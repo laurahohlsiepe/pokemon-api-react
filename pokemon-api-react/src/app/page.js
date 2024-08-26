@@ -3,6 +3,7 @@
 import React from "react";
 import { useState,  useEffect } from "react";
 import axios from "axios";
+import "./page.css";
 
 const Pokemon = () => {
   const [num, setnum] = useState("");
@@ -13,7 +14,7 @@ const Pokemon = () => {
     if (num) { 
       async function getData() {
           const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${num}`);
-          console.log(res.data.name);
+          console.log(res.data);
           setname(res.data.name);
           setmoves(res.data.moves.length);
       }
@@ -23,22 +24,27 @@ const Pokemon = () => {
 
   return (
     <>
-    <h1>You chose <span style={{color: 'red'}}>{num}</span></h1>
-    <h1>My name is <span>{name}</span></h1>
-    <h1>I have <span>{moves}</span></h1>
-     <select 
-     name="" 
-     id=""
-     value={num}
-     onChange={(event) => {
-      setnum(event.target.value)
-     }}>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-     </select>
+    <div className="main">
+      <div>
+      <h1>You chose <span style={{color: 'red'}}>{num}</span></h1>
+      <h1>My name is <span>{name}</span></h1>
+      <h1>I have <span>{moves}</span></h1>
+      </div>
+       <select 
+       className="select"
+      name="" 
+      id=""
+      value={num}
+      onChange={(event) => {
+       setnum(event.target.value)
+      }}>
+       <option value="1">1</option>
+       <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
     </>
   )
 }
